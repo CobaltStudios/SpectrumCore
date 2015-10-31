@@ -1,10 +1,12 @@
 package net.spectrumnation.utils;
 
+import java.net.ConnectException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Properties;
 
 /**
  * Created by sirtidez on 10/31/15.
@@ -103,6 +105,30 @@ public class DatabaseUtil {
 
         public abstract void close();
         public abstract boolean checkTable(String table_name);
+    }
+
+    public static class MySQLUtil extends DatabaseCommon {
+        private String HOST = "";
+        private String USER = "";
+        private String PASS = "";
+        private String DATABASE = "";
+        private String PORT = "";
+
+        public MySQLUtil(String host, String user, String pass, String database, String port) {
+            HOST = host;
+            USER = user;
+            PASS = pass;
+            DATABASE = database;
+            PORT = port;
+        }
+
+        public Connection open(boolean print) throws SQLException, ConnectException {
+            Properties connectionProperties = new Properties();
+            connectionProperties.put("user", USER);
+            connectionProperties.put("password". PASS);
+
+            if(print)
+        }
     }
 
 }
